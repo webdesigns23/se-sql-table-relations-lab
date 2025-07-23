@@ -122,4 +122,4 @@ ORDER BY e.lastName
 """,conn)
 print(df_under_20)
 
-# conn.close()
+conn.close()
