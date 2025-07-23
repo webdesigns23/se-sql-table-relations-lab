@@ -27,7 +27,7 @@ df_zero_emp = pd.read_sql("""
 SELECT
     offices.officeCode, COUNT(employees.employeeNumber) AS number_employees
 FROM offices
-LEFT JOIN employees
+JOIN employees
     USING(officeCode)
 GROUP BY officeCode
 HAVING number_employees = 0
@@ -37,7 +37,7 @@ HAVING number_employees = 0
 df_employee = pd.read_sql(""" 
 SELECT employees.firstName, employees.lastName, offices.city, offices.state
 	FROM employees
-	LEFT JOIN offices
+	JOIN offices
 	USING(officeCode)
 ORDER BY employees.firstName, employees.lastName ASC
 """, conn)
@@ -56,7 +56,7 @@ ORDER BY c.contactLastName ASC
 df_payment = pd.read_sql(""" 
 SELECT c.contactFirstName, c.contactLastName, p.amount, p.paymentDate
 FROM customers AS c
-	RIGHT JOIN payments AS p
+	JOIN payments AS p
 	USING(customerNumber)
 ORDER BY CAST(p.amount AS INTEGER) DESC
 """,conn)
